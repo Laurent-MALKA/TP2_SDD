@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 
+typedef int donnee_t ;
+
 enum CodesErreurs
 {
 	ALLOCATION_IMPOSSIBLE,
@@ -10,4 +12,4 @@ enum CodesErreurs
 	DEPILER_IMPOSSIBLE,
 	EMPILER_IMPOSSIBLE
 }
-#endif 
+#endif

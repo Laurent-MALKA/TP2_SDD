@@ -1,15 +1,16 @@
-#include <stdio.h>
-
+#include "commun.h"
+#include "pile.h"
+#include "file.h"
+#include "FonctionsAnnexes.h"
 int main(void)
 {
-	pile_t *pile ;
-	int CodeErreur ; 
-	CodeErreur = InitialiserPile(&pile, 50 , "int") ;
-	if (CodeErreur) 
-	{
-		printf("ff") ; 
-	}	
-	AffichageCodeErreur(CodeErreur) ; 
-	return CodeErreur == OK;  
-}
+    int CodeErreur ;
+    CodeErreur = TestPile() ;
+    if (CodeErreur == OK)
+    {
+        CodeErreur = TestFile() ;
+    }
+    AffichageCodeErreur(CodeErreur) ;
+    return !(CodeErreur == OK) ;
 
+}

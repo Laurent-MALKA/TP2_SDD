@@ -1,6 +1,7 @@
+#include "commun.h"
 #include "FonctionsAnnexes.h"
 
-void AffichageCodeErreur(int CodeErreur)
+;void AffichageCodeErreur(int CodeErreur)
 {
 	switch(CodeErreur)
 	{
@@ -14,7 +15,7 @@ void AffichageCodeErreur(int CodeErreur)
 			printf("Impossible d'allouer la mémoire necessaire\n");
 			break;
 		case EMPILER_IMPOSSIBLE:
-			printf("Impossible d'empier car la pile est pleine\n");
+			printf("Impossible d'empiler car la pile est pleine\n");
 			break;
 	}
 }

@@ -1,6 +1,6 @@
 #ifndef FONCTIONS_ANNEXES_H
 #define FONCTIONS_ANNEXES_H
 
-void AffichageCodeErreur(int CodeErreur) ;
+;void AffichageCodeErreur(int CodeErreur) ;
 
-#endif 
+#endif
