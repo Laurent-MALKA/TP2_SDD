@@ -1,6 +1,18 @@
 #include <stdlib.h>
 #include "commun.h"
 #include "pile.h"
+/**
+ * \file pile.c
+ * \brief Fonctions qui implementent la structure de donnees de la pile
+ * \author MALKA Laurent et GLADIEUX CUNHA Dimitri
+ * \date 07 mars 2018
+ */
+
+ /**
+ * \fn int TestPile()
+ * \brief Fonction qui teste le bon fonctionnement de la pile avec tous les cas (enumere dans le rapport)
+ * \return CodeErreur Le code code d'erreur, qui retourne Ok (1) si tout s'est bien passe sinon le code d'erreur associe
+*/
 int TestPile()
 {
     pile_t *pile ;
@@ -26,7 +38,13 @@ int TestPile()
     LibererPile(&pile) ;
     return CodeErreur ;
 }
-
+/**
+ * \fn int InitialiserPile(pile_t **pile, int taille)
+ * \brief Fonction qui initialise la pile avec le nombre d'element actuel a 0, la taille maximal de la liste et alloue une liste contigues de taille max.
+ * \param **pile Adresse de la pile que l'on veut initialiser
+ * \param taille Taille max de la pile
+ * \return CodeErreur Le code code d'erreur, qui retourne Ok (1) si la fonction a pu initialiser la pile, sinon 0 (l'allocation dynamique n'a pas ete possible)
+*/
 int InitialiserPile(pile_t **pile, int taille)
 {
 	int CodeErreur = OK ;
@@ -51,7 +69,11 @@ int InitialiserPile(pile_t **pile, int taille)
 	}
 	return CodeErreur ;
 }
-
+/**
+ * \fn void LibererPile(pile_t ** pile)
+ * \brief Fonction qui libere la place memoire de la pile (la liste contigue plus le pointeur pile)
+ * \param **pile Adresse de la pile que l'on veut liberer
+ */
 void LibererPile(pile_t ** pile)
 {
 	free((*pile) -> PileElement) ;
@@ -59,7 +81,13 @@ void LibererPile(pile_t ** pile)
 	(*pile) = NULL ;
 
 }
-
+/**
+ * \fn int DepilerPile(pile_t **pile, donnee_t * ElementDepiler)
+ * \brief Fonction qui depile (enleve le dernier element inserer dans la pile). Remarque : Si la pile est vide on ne peut pas depiler. On peut recuperer l'element depiler.
+ * \param **pile Adresse de la pile que l'on depiler
+ * \param *ElementDepiler Adresse ou l'on va stocker la valeur de l'element depiler
+ * \return CodeErreur Le code code d'erreur, qui retourne Ok (1) si la fonction a pu depiler, sinon 2 (impossible de depiler une pile vide)
+*/
 int DepilerPile(pile_t **pile, donnee_t * ElementDepiler)
 {
 	int CodeErreur = OK ;
@@ -76,7 +104,13 @@ int DepilerPile(pile_t **pile, donnee_t * ElementDepiler)
 	return CodeErreur ;
 
 }
-
+/**
+ * \fn int EmpilerPile(pile_t **pile, donnee_t valeur)
+ * \brief Fonction qui enpile (ajoute un element a la fin de la liste contigue). Remarque : Si la pile est pleine on ne peut pas empiler.
+ * \param **pile Adresse de la pile que l'on depiler
+ * \param valeur Valeur que l'on veut ajouter dans notre pile
+ * \return CodeErreur Le code code d'erreur, qui retourne Ok (1) si la fonction a pu empiler, sinon 3 (impossible d'empiler une pile pleine)
+*/
 int EmpilerPile(pile_t **pile, donnee_t valeur)
 {
 	int CodeErreur = OK ;
@@ -92,7 +126,12 @@ int EmpilerPile(pile_t **pile, donnee_t valeur)
 	}
 	return CodeErreur ;
 }
-
+/**
+ * \fn int EstVidePile(pile_t *pile)
+ * \brief Fonction qui informe si notre pile est vide
+ * \param *pile Pile dont on veut savoir si elle est vide
+ * \return booleen 1 si la pile est vide et autre chose si la pile n'est pas vide
+*/
 int EstVidePile(pile_t *pile)
 {
 	return (pile -> NombreElementActuel == 0) ;
