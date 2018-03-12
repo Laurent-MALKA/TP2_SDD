@@ -6,12 +6,13 @@
  */
 #ifndef FILE_H
 #define FILE_H
-
+#include <stdlib.h>
+#include "commun.h"
  /**
  * \struct file
  * \brief Cette structure de donnnee comprend : la taille maximale de la pile (entier), le nombre actuel d'element dans la pile (entier), une liste contiguee de type donnee_t (ce type est une redefinission du type float, int , double, etc)
 */
-;typedef struct file
+typedef struct file
 {
 	int TailleFile ;/*!< Taille maximale de notre file. */
 	int NombreElementActuel ;/*!< Nombre d'element actuellement dans la pile */

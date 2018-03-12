@@ -1,5 +1,3 @@
-#include <stdlib.h>
-#include "commun.h"
 #include "file.h"
 /**
  * \file file.c
@@ -77,13 +75,8 @@ int InitialiserFile(file_t **file, int taille)
 		}
 		else
         {
-            //(*file) -> debut = (*file) -> FileElement ;
-            (*file) -> debut = (*file) -> FileElement ; // TODO : 2 init mais ca marche pas sinon comprend pas ????
+            (*file) -> debut = (*file) -> FileElement ;
             (*file) -> fin = &((*file) -> FileElement[taille-1]) ; 
-            //(*file) -> debut = (((int)((*file) -> debut ) - (int)((*file) -> FileElement) )%(int)((*file) -> FileElement)) + ((*file) -> FileElement) -1 ;
-            //(*file) -> debut = (((long int)((*file) -> debut ) - (long int)((*file) -> FileElement) )%(long int)((*file) -> FileElement)) + ((*file) -> FileElement) -1 ;
-
-
         }
 	}
 	return CodeErreur ;
@@ -146,10 +139,9 @@ int SortieFile(file_t **file, donnee_t *ElementDefiler)
     else
     {
 		(*file) -> NombreElementActuel -- ;
-		(*ElementDefiler) =  (*file) -> debut[0] ; // TODO : On met nul sur la valeur qu'on supprime ? Et dernier element ?
+		(*ElementDefiler) =  (*file) -> debut[0] ; 
 		indDeb = (int)((*file) -> debut - (*file) -> FileElement);
 		(*file) -> debut = &((*file)->FileElement[(indDeb+1)%(*file)->TailleFile]) ;
-        //(*file) -> debut = ((  (long int)((*file) -> debut ) - (long int)((*file) -> FileElement) )%(long int)((*file) -> FileElement)) + ((*file) -> FileElement) -1 ;
     }
     return CodeErreur ;
 

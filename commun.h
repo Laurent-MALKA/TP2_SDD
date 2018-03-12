@@ -24,5 +24,5 @@ enum CodesErreurs
 	EMPILER_IMPOSSIBLE,/*!< Impossible de d'empiler car la pile est pleine */
 	ENFILER_IMPOSSIBLE,/*!< Impossible de d'enfiler car la file est pleine */
 	DEFILER_IMPOSSIBLE /*!< Impossible de defiler car la file est vide */
-}
+};
 #endif

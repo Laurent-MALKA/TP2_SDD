@@ -1,5 +1,3 @@
-#include <stdlib.h>
-#include "commun.h"
 #include "pile.h"
 /**
  * \file pile.c

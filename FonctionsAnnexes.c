@@ -1,4 +1,3 @@
-#include "commun.h"
 #include "FonctionsAnnexes.h"
 
 /**

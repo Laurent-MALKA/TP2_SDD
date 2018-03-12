@@ -7,13 +7,14 @@
 #ifndef PILE_H
 #define PILE_H
 #include <stdio.h>
-
+#include <stdlib.h>
+#include "commun.h"
 
 /**
  * \struct pile
  * \brief Cette structure de donnnee comprend : la taille maximale de la pile (entier), le nombre actuel d'element dans la pile (entier), une liste contiguee de type donnee_t (ce type est une redefinission du type float, int , double, etc)
 */
-;typedef struct pile
+typedef struct pile
 {
 	int TaillePile ; /*!< Taille maximale de notre pile. */
 	int NombreElementActuel ;/*!< Nombre d'element actuellement dans la pile */
