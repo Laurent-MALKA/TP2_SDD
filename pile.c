@@ -17,7 +17,7 @@ int TestPile()
 {
     pile_t *pile ;
 	int CodeErreur ;
-	CodeErreur = InitialiserPile(&pile, 2) ;
+	CodeErreur = InitialiserPile(&pile, 5) ;
 	donnee_t temp ;
 	if (CodeErreur == OK)
 	{
@@ -40,9 +40,9 @@ int TestPile()
 }
 /**
  * \fn int InitialiserPile(pile_t **pile, int taille)
- * \brief Fonction qui initialise la pile avec le nombre d'element actuel a 0, la taille maximal de la liste et alloue une liste contigues de taille max.
+ * \brief Fonction qui initialise la pile (si l'allocation est possible) avec le nombre d'element actuel de la pile (= 0), la taille maximale de la pile et alloue une liste contigue de type donnee_t (et la libere si la liberation est impossible) de taille max.
  * \param **pile Adresse de la pile que l'on veut initialiser
- * \param taille Taille max de la pile
+ * \param taille Taille maximale de la pile
  * \return CodeErreur Le code code d'erreur, qui retourne Ok (1) si la fonction a pu initialiser la pile, sinon 0 (l'allocation dynamique n'a pas ete possible)
 */
 int InitialiserPile(pile_t **pile, int taille)
@@ -71,7 +71,7 @@ int InitialiserPile(pile_t **pile, int taille)
 }
 /**
  * \fn void LibererPile(pile_t ** pile)
- * \brief Fonction qui libere la place memoire de la pile (la liste contigue plus le pointeur pile)
+ * \brief Fonction qui libere la place memoire de la pile (la liste contigue plus le pointeur pile), et met le pointeur de pile a NULL
  * \param **pile Adresse de la pile que l'on veut liberer
  */
 void LibererPile(pile_t ** pile)
@@ -83,7 +83,7 @@ void LibererPile(pile_t ** pile)
 }
 /**
  * \fn int DepilerPile(pile_t **pile, donnee_t * ElementDepiler)
- * \brief Fonction qui depile (enleve le dernier element inserer dans la pile). Remarque : Si la pile est vide on ne peut pas depiler. On peut recuperer l'element depiler.
+ * \brief Fonction qui depile (enleve le dernier element insere dans la pile). Remarque : Si la pile est vide on ne peut pas depiler. On peut recuperer l'element depiler. Le nombre d'element d'actuel decremente
  * \param **pile Adresse de la pile que l'on depiler
  * \param *ElementDepiler Adresse ou l'on va stocker la valeur de l'element depiler
  * \return CodeErreur Le code code d'erreur, qui retourne Ok (1) si la fonction a pu depiler, sinon 2 (impossible de depiler une pile vide)
@@ -98,15 +98,16 @@ int DepilerPile(pile_t **pile, donnee_t * ElementDepiler)
 	}
 	else
 	{
-		(*ElementDepiler) = (*pile) -> PileElement[(*pile) -> NombreElementActuel] ; // TODO : On met nul sur la valeur qu'on supprime ?
-        (*pile) -> NombreElementActuel = ( (*pile) -> NombreElementActuel ) -1 ;
+		(*pile) -> NombreElementActuel -- ;
+		(*ElementDepiler) = (*pile) -> PileElement[(*pile) -> NombreElementActuel] ; 
+        
 	}
 	return CodeErreur ;
 
 }
 /**
  * \fn int EmpilerPile(pile_t **pile, donnee_t valeur)
- * \brief Fonction qui enpile (ajoute un element a la fin de la liste contigue). Remarque : Si la pile est pleine on ne peut pas empiler.
+ * \brief Fonction qui enpile (ajoute un element a la fin de la liste contigue). Remarque : Si la pile est pleine on ne peut pas empiler. Le nombre d'element actuel s'incremente.
  * \param **pile Adresse de la pile que l'on depiler
  * \param valeur Valeur que l'on veut ajouter dans notre pile
  * \return CodeErreur Le code code d'erreur, qui retourne Ok (1) si la fonction a pu empiler, sinon 3 (impossible d'empiler une pile pleine)
@@ -121,14 +122,14 @@ int EmpilerPile(pile_t **pile, donnee_t valeur)
 	}
 	else
 	{
-		(*pile) -> NombreElementActuel ++ ;
 		(*pile) -> PileElement[(*pile) -> NombreElementActuel] = valeur ;
+		(*pile) -> NombreElementActuel ++ ;
 	}
 	return CodeErreur ;
 }
 /**
  * \fn int EstVidePile(pile_t *pile)
- * \brief Fonction qui informe si notre pile est vide
+ * \brief Fonction qui informe si notre pile est vide. On regarde si le nombre d'element actuel est egal a 0
  * \param *pile Pile dont on veut savoir si elle est vide
  * \return booleen 1 si la pile est vide et autre chose si la pile n'est pas vide
 */

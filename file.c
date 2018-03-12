@@ -18,8 +18,7 @@ int TestFile()
     file_t * file ;
     int CodeErreur ;
     donnee_t temp ;
-    CodeErreur = InitialiserFile(&file,3) ;
-//    printf("%d\n" ,EstVideFile(file)) ;
+    CodeErreur = InitialiserFile(&file,10) ;
     if (CodeErreur == OK)
     {
         CodeErreur = EntreeFile(&file,3) ;
@@ -50,7 +49,7 @@ int TestFile()
 }
 /**
  * \fn int InitialiserFile(file_t **file, int taille)
- * \brief Fonction qui initialise la file avec le nombre d'element actuel a 0, la taille maximal de la file et alloue une liste contigue de taille max. Initialise les pointeuirs de debut et de fin au debut de la liste contigue
+ * \brief Fonction qui initialise la file (si l'allocation a ete possible) avec le nombre d'element actuel a 0, la taille maximale de la file et alloue une liste contigue (si l'allocation a ete possible) de taille max. Initialise les pointeuirs de debut et de fin au debut de la liste contigue
  * \param **file Adresse de la file que l'on veut initialiser
  * \param taille Taille max de la file
  * \return CodeErreur Le code code d'erreur, qui retourne Ok (1) si la fonction a pu initialiser la file, sinon 0 (l'allocation dynamique n'a pas ete possible)
@@ -78,9 +77,12 @@ int InitialiserFile(file_t **file, int taille)
 		}
 		else
         {
-            (*file) -> debut = (*file) -> FileElement ;
-            (*file) -> fin = (*file) -> FileElement ; // TODO : 2 init mais ca marche pas sinon comprend pas ????
-            (*file) -> debut = (((int)((*file) -> debut ) - (int)((*file) -> FileElement) )%(int)((*file) -> FileElement)) + ((*file) -> FileElement) -1 ;
+            //(*file) -> debut = (*file) -> FileElement ;
+            (*file) -> debut = (*file) -> FileElement ; // TODO : 2 init mais ca marche pas sinon comprend pas ????
+            (*file) -> fin = &((*file) -> FileElement[taille-1]) ; 
+            //(*file) -> debut = (((int)((*file) -> debut ) - (int)((*file) -> FileElement) )%(int)((*file) -> FileElement)) + ((*file) -> FileElement) -1 ;
+            //(*file) -> debut = (((long int)((*file) -> debut ) - (long int)((*file) -> FileElement) )%(long int)((*file) -> FileElement)) + ((*file) -> FileElement) -1 ;
+
 
         }
 	}
@@ -110,14 +112,16 @@ void LibererFile(file_t ** file)
 int EntreeFile(file_t **file, donnee_t valeur)
 {
     int CodeErreur = OK ;
+    int indFin = 0;
     if ( (*file) -> NombreElementActuel == (*file) -> TailleFile)
     {
         CodeErreur = ENFILER_IMPOSSIBLE ;
     }
     else
     {
-        (*file) -> fin = (((int)((*file) -> fin ) - (int)((*file) -> FileElement) )%(int)((*file) -> FileElement)) + ((*file) -> FileElement) -1 ;
-        (*file) -> fin[0] = valeur ;
+		indFin = (int)((*file) -> fin - (*file) -> FileElement);
+		(*file) -> fin = &((*file)->FileElement[(indFin+1)%(*file)->TailleFile]) ;
+		(*file) -> fin[0] = valeur ;
         (*file) -> NombreElementActuel ++ ;
     }
     return CodeErreur ;
@@ -134,15 +138,18 @@ int EntreeFile(file_t **file, donnee_t valeur)
 int SortieFile(file_t **file, donnee_t *ElementDefiler)
 {
     int CodeErreur = OK ;
+    int indDeb ;
     if ( (*file) -> NombreElementActuel == 0)
     {
         CodeErreur = DEFILER_IMPOSSIBLE ;
     }
     else
     {
-        (*ElementDefiler) =  (*file) -> debut[0] ; // TODO : On met nul sur la valeur qu'on supprime ? Et dernier element ?
-        (*file) -> debut = ((  (int)((*file) -> debut ) - (int)((*file) -> FileElement) )%(int)((*file) -> FileElement)) + ((*file) -> FileElement) -1 ;
-        (*file) -> NombreElementActuel -- ;
+		(*file) -> NombreElementActuel -- ;
+		(*ElementDefiler) =  (*file) -> debut[0] ; // TODO : On met nul sur la valeur qu'on supprime ? Et dernier element ?
+		indDeb = (int)((*file) -> debut - (*file) -> FileElement);
+		(*file) -> debut = &((*file)->FileElement[(indDeb+1)%(*file)->TailleFile]) ;
+        //(*file) -> debut = ((  (long int)((*file) -> debut ) - (long int)((*file) -> FileElement) )%(long int)((*file) -> FileElement)) + ((*file) -> FileElement) -1 ;
     }
     return CodeErreur ;
 
