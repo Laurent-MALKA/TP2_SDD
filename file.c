@@ -47,7 +47,7 @@ int TestFile()
 }
 /**
  * \fn int InitialiserFile(file_t **file, int taille)
- * \brief Fonction qui initialise la file (si l'allocation a ete possible) avec le nombre d'element actuel a 0, la taille maximale de la file et alloue une liste contigue (si l'allocation a ete possible) de taille max. Initialise les pointeuirs de debut et de fin au debut de la liste contigue
+ * \brief Fonction qui initialise la file (si l'allocation a ete possible) avec le nombre d'element actuel a 0, la taille maximale de la file et alloue une liste contigue (si l'allocation a ete possible) de taille max. Initialise les pointeuirs de debut et de fin de la liste contigue FileElement
  * \param **file Adresse de la file que l'on veut initialiser
  * \param taille Taille max de la file
  * \return CodeErreur Le code code d'erreur, qui retourne Ok (1) si la fonction a pu initialiser la file, sinon 0 (l'allocation dynamique n'a pas ete possible)
@@ -97,7 +97,7 @@ void LibererFile(file_t ** file)
 /**
  * \fn int EntreeFile(file_t **file, donnee_t valeur)
  * \brief Fonction qui enfile (insere un element insere dans la file, a l'endroit du pointeur fin). Remarque : Si la file est pleine on ne peut pas enfiler.
- * Principe : On decale le pointeur de fin de 1 case sur la droite. Mais si on arrive au bout de Pile Element, alors il faut revenir au debut de ce dernier.
+ * Principe : On recherche l'indice ou l'on doit inserer l'element avec l'adresse de fin - l'adresse de FileElement, et on applique le modulo de la taille de la file (pour revenir a FileElement si on a atteind la liste contigue).
  * \param **file Adresse de la file que l'on defiler
  * \param valeur Valeur que l'on veut ajouter dans notre file
  * \return CodeErreur Le code code d'erreur, qui retourne Ok (1) si la fonction a pu enfiler, sinon 4 (impossible de d'enfiler une file pleine)
@@ -139,7 +139,10 @@ int SortieFile(file_t **file, donnee_t *ElementDefiler)
     else
     {
 		(*file) -> NombreElementActuel -- ;
-		(*ElementDefiler) =  (*file) -> debut[0] ; 
+		if (ElementDefiler != NULL) 
+		{
+			(*ElementDefiler) =  *((*file) -> debut) ; 
+		}
 		indDeb = (int)((*file) -> debut - (*file) -> FileElement);
 		(*file) -> debut = &((*file)->FileElement[(indDeb+1)%(*file)->TailleFile]) ;
     }

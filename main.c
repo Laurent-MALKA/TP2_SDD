@@ -18,13 +18,23 @@
 int main(int argc, char** argv;)
 {
     int CodeErreur ;
-    CodeErreur = TestPile() ;
+    pile_t * pile ;
+    InitialiserPile(&pile,50) ;
+    EmpilerPile(&pile,1) ;
+    EmpilerPile(&pile,2) ;
+    EmpilerPile(&pile,3) ;
+    InverserPile(&pile) ;
+    donnee_t Element ; 
+    DepilerPile(&pile,&Element) ; 
+    printf("%d",Element) ; 
+
+    /*CodeErreur = TestPile() ;
     if (CodeErreur == OK)
     {
         AffichageCodeErreur(CodeErreur) ;
         CodeErreur = TestFile() ;
     }
-    AffichageCodeErreur(CodeErreur) ;
+    AffichageCodeErreur(CodeErreur) ;*/
     return !(CodeErreur == OK) ;
 
 }

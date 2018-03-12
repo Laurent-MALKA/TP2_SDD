@@ -13,7 +13,7 @@
  * \param CodeErreur Code erreur que le programme a cree
 */
 
-;void AffichageCodeErreur(int CodeErreur)
+void AffichageCodeErreur(int CodeErreur)
 {
 	switch(CodeErreur)
 	{
@@ -37,4 +37,25 @@
             break ;
 
 	}
+}
+
+int InverserPile(pile_t ** pile)
+{
+	int CodeErreur;
+	file_t * file;
+	CodeErreur = InitialiserFile(&file, (*pile)->TaillePile);
+	donnee_t valeur;
+
+	while(!EstVidePile(*pile))
+	{
+		DepilerPile(pile,&valeur);
+		EntreeFile(&file,valeur);
+	}
+	while(!EstVideFile(file))
+	{
+		SortieFile(&file,&valeur);
+		EmpilerPile(pile,valeur);
+	}
+
+	return CodeErreur;
 }
