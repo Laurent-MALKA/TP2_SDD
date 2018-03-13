@@ -11,30 +11,23 @@
 
 /**
  * \fn int main(void)
- * \brief Fonction main du programme //TODO : a expliquer
+ * \brief Fonction main du programme TODO : a expliquer
  * \return CodeErreur Retourne 0 si tout s'est bien passe sinon autre chose
 */
-//TODO : On enfile depile avec les argv pour montrer ??
-int main(int argc, char** argv;)
+/*TODO : On enfile depile avec les argv pour montrer ?? */
+int main(void)
 {
-    int CodeErreur ;
+    int CodeErreur = OK ;
     pile_t * pile ;
+    donnee_t Element ; 
     InitialiserPile(&pile,50) ;
     EmpilerPile(&pile,1) ;
     EmpilerPile(&pile,2) ;
     EmpilerPile(&pile,3) ;
     InverserPile(&pile) ;
-    donnee_t Element ; 
     DepilerPile(&pile,&Element) ; 
     printf("%d",Element) ; 
-
-    /*CodeErreur = TestPile() ;
-    if (CodeErreur == OK)
-    {
-        AffichageCodeErreur(CodeErreur) ;
-        CodeErreur = TestFile() ;
-    }
-    AffichageCodeErreur(CodeErreur) ;*/
+    AffichageCodeErreur(CodeErreur);
+    LibererPile(&pile) ;
     return !(CodeErreur == OK) ;
-
 }

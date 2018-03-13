@@ -13,10 +13,10 @@
 */
 int TestPile()
 {
-    pile_t *pile ;
+    	pile_t *pile ;
 	int CodeErreur ;
-	CodeErreur = InitialiserPile(&pile, 5) ;
 	donnee_t temp ;
+	CodeErreur = InitialiserPile(&pile, 5) ;
 	if (CodeErreur == OK)
 	{
         CodeErreur = EmpilerPile(&pile,5) ;
@@ -57,7 +57,7 @@ int InitialiserPile(pile_t **pile, int taille)
 	{
 		(*pile) -> TaillePile = taille ;
 		(*pile) -> NombreElementActuel = 0 ;
-        (*pile) -> PileElement = (donnee_t*) malloc(sizeof(donnee_t) * taille) ;
+	        (*pile) -> PileElement = (donnee_t*) malloc(sizeof(donnee_t) * taille) ;
 		if ( (*pile) -> PileElement == NULL)
 		{
 			CodeErreur = ALLOCATION_IMPOSSIBLE ;

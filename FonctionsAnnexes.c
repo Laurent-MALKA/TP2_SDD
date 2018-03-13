@@ -29,33 +29,50 @@ void AffichageCodeErreur(int CodeErreur)
 		case EMPILER_IMPOSSIBLE:
 			printf("Impossible d'empiler car la pile est pleine\n");
 			break;
-        case ENFILER_IMPOSSIBLE:
-            printf("Impossible d'enfiler car la file est pleine\n");
-            break ;
-        case DEFILER_IMPOSSIBLE:
-            printf("Impossible de defiler car la file est vide\n");
-            break ;
+        	case ENFILER_IMPOSSIBLE:
+           		printf("Impossible d'enfiler car la file est pleine\n");
+           		break ;
+        	case DEFILER_IMPOSSIBLE:
+            		printf("Impossible de defiler car la file est vide\n");
+            		break ;
 
 	}
 }
 
+/**
+ * \fn int InverserPile(pile_t ** pile)
+ * \brief Fonction qui inverse les valeurs d'une pile. Pour ce faire, on initialise une file, de la meme taille que la pile. On depile chaque element de la pile et on l'insere dans la file. Puis on defile chaque element de la file et on les rempile dans la pile.
+ * \param **pile Adresse de la pile que l'on veut inverser
+ * \return CodeErreur Indique si le programme a pu realiser l'inversion : 1 si OK sinon autre chose
+*/
 int InverserPile(pile_t ** pile)
 {
 	int CodeErreur;
 	file_t * file;
-	CodeErreur = InitialiserFile(&file, (*pile)->TaillePile);
 	donnee_t valeur;
-
-	while(!EstVidePile(*pile))
+	CodeErreur = InitialiserFile(&file, (*pile)->NombreElementActuel);
+	if (CodeErreur == OK)
 	{
-		DepilerPile(pile,&valeur);
-		EntreeFile(&file,valeur);
+		while( (!EstVidePile(*pile)) && (CodeErreur == OK))
+		{
+			CodeErreur = DepilerPile(pile,&valeur);
+			if (CodeErreur == OK)
+			{
+				CodeErreur = EntreeFile(&file,valeur);
+			}
+		}
+		if (CodeErreur == OK)
+		{
+			while( (!EstVideFile(file)) && (CodeErreur == OK))
+			{
+				CodeErreur = SortieFile(&file,&valeur);
+				if (CodeErreur == OK) 
+				{
+					CodeErreur = EmpilerPile(pile,valeur);
+				}
+			}
+		}
 	}
-	while(!EstVideFile(file))
-	{
-		SortieFile(&file,&valeur);
-		EmpilerPile(pile,valeur);
-	}
-
+	LibererFile(&file) ;
 	return CodeErreur;
 }

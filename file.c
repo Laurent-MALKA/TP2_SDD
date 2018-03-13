@@ -41,7 +41,6 @@ int TestFile()
                 }
             }
         }
-
     }
     return CodeErreur ;
 }
@@ -89,8 +88,6 @@ int InitialiserFile(file_t **file, int taille)
 void LibererFile(file_t ** file)
 {
 	free((*file) -> FileElement) ;
-	free((*file) -> debut) ;
-	free((*file) -> fin) ;
 	free((*file)) ;
 	(*file) = NULL ;
 }
@@ -147,7 +144,6 @@ int SortieFile(file_t **file, donnee_t *ElementDefiler)
 		(*file) -> debut = &((*file)->FileElement[(indDeb+1)%(*file)->TailleFile]) ;
     }
     return CodeErreur ;
-
 }
 /**
  * \fn int EstVidePile(pile_t *pile)
