@@ -23,6 +23,7 @@ enum CodesErreurs
 	DEPILER_IMPOSSIBLE, /*!< Impossible de depiler car la pile est vide */
 	EMPILER_IMPOSSIBLE,/*!< Impossible de d'empiler car la pile est pleine */
 	ENFILER_IMPOSSIBLE,/*!< Impossible de d'enfiler car la file est pleine */
-	DEFILER_IMPOSSIBLE /*!< Impossible de defiler car la file est vide */
+	DEFILER_IMPOSSIBLE, /*!< Impossible de defiler car la file est vide */
+	NOMBRE_ARGUMENTS_INCORRECT /*!< La taille de la structure de donnee n'est pas renseigne*/
 };
 #endif

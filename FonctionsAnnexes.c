@@ -35,13 +35,17 @@ void AffichageCodeErreur(int CodeErreur)
         	case DEFILER_IMPOSSIBLE:
             		printf("Impossible de defiler car la file est vide\n");
             		break ;
+		case NOMBRE_ARGUMENTS_INCORRECT:
+			printf("Nombre d'arguments incorrect\n") ;
+			break ;
 
 	}
 }
 
 /**
  * \fn int InverserPile(pile_t ** pile)
- * \brief Fonction qui inverse les valeurs d'une pile. Pour ce faire, on initialise une file, de la meme taille que la pile. On depile chaque element de la pile et on l'insere dans la file. Puis on defile chaque element de la file et on les rempile dans la pile.
+ * \brief Fonction qui inverse les valeurs d'une pile. Pour ce faire, on initialise une file, de la taille du nombre d'element de la pile. On depile chaque element de la pile et on l'insere dans la file. 
+ Puis on defile chaque element de la file et on les rempile dans la pile.
  * \param **pile Adresse de la pile que l'on veut inverser
  * \return CodeErreur Indique si le programme a pu realiser l'inversion : 1 si OK sinon autre chose
 */
@@ -72,7 +76,7 @@ int InverserPile(pile_t ** pile)
 				}
 			}
 		}
+		LibererFile(&file) ;
 	}
-	LibererFile(&file) ;
 	return CodeErreur;
 }

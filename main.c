@@ -11,23 +11,39 @@
 
 /**
  * \fn int main(void)
- * \brief Fonction main du programme TODO : a expliquer
+ * \brief Fonction main du programme. L'utilisateur doit rentrer au moins 1 argument en ligne de commande qui est la taille maximale de la pile (le nombre rentre est suppose correct). Ensuite, on initialise une pile (voir la fonction).
+ * Si l'initialisation est possible, on empile les valeurs rentrees en ligne de commande par l'utilisateur (suppose correct). Si la pile est non vide et que tout s'est bien passe, on va inverser notre pile, et on affiche le premier element
+ * de la pile pour montrer que l'inversion s'est bien deroule. On libere la pile si son initilisation a put etre possible
  * \return CodeErreur Retourne 0 si tout s'est bien passe sinon autre chose
 */
-/*TODO : On enfile depile avec les argv pour montrer ?? */
-int main(void)
+int main(int argc, char ** argv)
 {
     int CodeErreur = OK ;
+    int i = 2 , temp ;
     pile_t * pile ;
     donnee_t Element ; 
-    InitialiserPile(&pile,50) ;
-    EmpilerPile(&pile,1) ;
-    EmpilerPile(&pile,2) ;
-    EmpilerPile(&pile,3) ;
-    InverserPile(&pile) ;
-    DepilerPile(&pile,&Element) ; 
-    printf("%d",Element) ; 
+    if (argc >= 2)
+    {
+	temp = atoi(argv[1]) ;
+    	CodeErreur = InitialiserPile(&pile,temp) ;
+	while ( (i < argc) && (CodeErreur == OK) )
+	{
+		temp = atoi(argv[i]) ;
+    		CodeErreur = EmpilerPile(&pile,temp) ;
+		i++ ;
+	}
+	if ( (!EstVidePile(pile)) && (CodeErreur == OK) )
+	{
+    		CodeErreur = InverserPile(&pile) ;
+    		CodeErreur = DepilerPile(&pile,&Element) ; 
+    		printf("%d",Element) ;
+	}	
+    	LibererPile(&pile) ;
+    }
+    else
+    {
+	CodeErreur = NOMBRE_ARGUMENTS_INCORRECT ;
+    }
     AffichageCodeErreur(CodeErreur);
-    LibererPile(&pile) ;
     return !(CodeErreur == OK) ;
 }
