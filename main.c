@@ -40,7 +40,6 @@ int main(int argc, char ** argv)
 		{
 			CodeErreur = InverserPile(&pile) ;
 			CodeErreur = DepilerPile(&pile,&Element) ; 
-			printf("%d\n",Element) ;
 		}	
 		LibererPile(&pile) ;
 	}

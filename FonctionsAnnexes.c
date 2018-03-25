@@ -59,26 +59,23 @@ int InverserPile(pile_t ** pile)
 	CodeErreur = InitialiserFile(&file, (*pile)->NombreElementActuel);
 	if (CodeErreur == OK)
 	{
-		while( (!EstVidePile(*pile)) && (CodeErreur == OK))
+		while( !EstVidePile(*pile) )
 		{
-			CodeErreur = DepilerPile(pile,&valeur);
-			if (CodeErreur == OK)
-			{
-				CodeErreur = EntreeFile(&file,valeur);
-			}
+			DepilerPile(pile,&valeur);
+			printf("%d\n", valeur);
+			EntreeFile(&file,valeur);
 		}
-		if (CodeErreur == OK)
+
+		printf("\n");
+
+		while( !EstVideFile(file) )
 		{
-			while( (!EstVideFile(file)) && (CodeErreur == OK))
-			{
-				CodeErreur = SortieFile(&file,&valeur);
-				if (CodeErreur == OK) 
-				{
-					CodeErreur = EmpilerPile(pile,valeur);
-				}
-			}
+			SortieFile(&file,&valeur);
+			printf("%d\n", valeur);
+			EmpilerPile(pile,valeur);
 		}
-		LibererFile(&file) ;
 	}
+	LibererFile(&file) ;
+
 	return CodeErreur;
 }
