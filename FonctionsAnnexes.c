@@ -71,7 +71,6 @@ int InverserPile(pile_t ** pile)
 		while( !EstVideFile(file) )
 		{
 			SortieFile(&file,&valeur);
-			printf("%d\n", valeur);
 			EmpilerPile(pile,valeur);
 		}
 	}

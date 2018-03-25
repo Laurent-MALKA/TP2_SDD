@@ -39,7 +39,14 @@ int main(int argc, char ** argv)
 		if ( (!EstVidePile(pile)) && (CodeErreur == OK) )
 		{
 			CodeErreur = InverserPile(&pile) ;
-			CodeErreur = DepilerPile(&pile,&Element) ; 
+			if( CodeErreur == OK )
+			{
+				while( !EstVidePile(pile) )
+				{
+					DepilerPile(&pile,&Element) ; 
+					printf("%d\n", Element);
+				}
+			}
 		}	
 		LibererPile(&pile) ;
 	}
