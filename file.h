@@ -18,11 +18,11 @@
 
 typedef struct file
 {
-	int			TailleFile ;/*!< Taille maximale de notre file. */
+	int 		TailleFile ;/*!< Taille maximale de notre file. */
 	int 		NombreElementActuel ;/*!< Nombre d'elements actuellement dans la pile */
-    donnee_t  * FileElement ;/*!< Liste contigue de type donnee_t et de taille TailleFile */
-	donnee_t  * debut ; /*!< Pointeur du debut de la file (la ou on defile) */
-	donnee_t  * fin ;/*!< Pointeur de la fin de la file (la ou on enfile) */
+	donnee_t      *	FileElement ;/*!< Liste contigue de type donnee_t et de taille TailleFile */
+	donnee_t      *	debut ; /*!< Pointeur du debut de la file (la ou on defile) */
+	donnee_t      *	fin ;/*!< Pointeur de la fin de la file (la ou on enfile) */
 }file_t ;
 
 int TestFile() ;

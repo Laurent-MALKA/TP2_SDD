@@ -19,9 +19,9 @@
 
 typedef struct pile
 {
-	int			TaillePile ; /*!< Taille maximale de notre pile. */
+	int 		TaillePile ; /*!< Taille maximale de notre pile. */
 	int 		NombreElementActuel ;/*!< Nombre d'elements actuellement dans la pile */
-	donnee_t  * PileElement ;/*!< Liste contigue de type donnee_t et de taille TaillePile */
+	donnee_t      *	PileElement ;/*!< Liste contigue de type donnee_t et de taille TaillePile */
 }pile_t ;
 
 int TestPile() ;

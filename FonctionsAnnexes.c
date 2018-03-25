@@ -52,9 +52,9 @@ void AffichageCodeErreur(int CodeErreur)
 
 int InverserPile(pile_t ** pile)
 {
-	int			 CodeErreur;
-	file_t 	   * file;
-	donnee_t 	 valeur;
+	int 		CodeErreur;
+	file_t        * file;
+	donnee_t	valeur;
 
 	CodeErreur = InitialiserFile(&file, (*pile)->NombreElementActuel);
 	if (CodeErreur == OK)

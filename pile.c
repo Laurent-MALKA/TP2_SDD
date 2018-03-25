@@ -15,7 +15,7 @@
 
 int TestPile()
 {
-	pile_t 	  * pile ;
+	pile_t        *	pile ;
 	int 		CodeErreur ;
 	donnee_t 	temp ;
 

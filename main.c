@@ -22,8 +22,8 @@ int main(int argc, char ** argv)
 {
 	int 		CodeErreur = OK ;
 	int 		i = 2 ,
-				temp ;
-	pile_t 	  * pile ;
+			temp ;
+	pile_t        *	pile ;
 	donnee_t 	Element ;
 
 	if (argc >= 2)

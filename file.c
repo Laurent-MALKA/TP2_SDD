@@ -15,8 +15,8 @@
 
 int TestFile()
 {
-    file_t 	  * file ;
-    int	 		CodeErreur ;
+    file_t    *	file ;
+    int		CodeErreur ;
     donnee_t 	temp ;
 
     CodeErreur = InitialiserFile(&file,10) ;
@@ -57,7 +57,7 @@ int TestFile()
 
 int InitialiserFile(file_t **file, int taille)
 {
-    int 		CodeErreur = OK ;
+    int 	CodeErreur = OK ;
 
 	(*file) = NULL ;
 	(*file) = malloc(sizeof(file_t)) ;
@@ -110,8 +110,8 @@ void LibererFile(file_t ** file)
 
 int EntreeFile(file_t **file, donnee_t valeur)
 {
-    int 		CodeErreur = OK ;
-    int 		indFin = 0;
+    int 	CodeErreur = OK ;
+    int		indFin = 0;
 
     if ( (*file) -> NombreElementActuel == (*file) -> TailleFile)
     {
@@ -139,8 +139,8 @@ int EntreeFile(file_t **file, donnee_t valeur)
 
 int SortieFile(file_t **file, donnee_t *ElementDefile)
 {
-    int			 CodeErreur = OK ;
-    int			 indDeb ;
+    int		CodeErreur = OK ;
+    int		indDeb ;
 
     if ( (*file) -> NombreElementActuel == 0)
     {
